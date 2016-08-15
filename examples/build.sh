@@ -6,6 +6,8 @@ sed -i "s|<password>|$OSC_PASSWORD|g" /root/.oscrc
 zypper -n in obs-service-tar_scm
 pushd osc-resource/home:mmanno/restic 1> /dev/null
 
+  touch test
+
   osc log --xml | tee
 
   osc service run
