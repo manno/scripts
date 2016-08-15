@@ -12,4 +12,6 @@ pushd osc-resource/home:mmanno/restic 1> /dev/null
 
   osc service run
 
+  osc commit -m'from script'
+
 popd 1> /dev/null
