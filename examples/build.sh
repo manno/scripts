@@ -13,3 +13,6 @@ pushd osc-resource/home:mmanno/restic 1> /dev/null
   osc rebuild
 
 popd 1> /dev/null
+
+mkdir osc-updated/home:mmanno/
+cp -a osc-resource/home:mmanno/restic osc-updated/home:mmanno/
