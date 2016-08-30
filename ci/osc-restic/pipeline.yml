@@ -15,7 +15,7 @@ jobs:
   - get: 24h
     trigger: true
   - get: scripts
-  - task: services
+  - task: run-service
     config:
       platform: linux
       image_resource:
@@ -24,6 +24,6 @@ jobs:
       inputs:
         - name: scripts
       run:
-        path: scripts/ci/osc-restic/tasks/trigger.sh
-        params:
-          TOKEN: {{token}}
+        path: scripts/ci/osc-restic/tasks/run-service.sh
+      params:
+        TOKEN: {{token}}

@@ -1,0 +1,21 @@
+resources:
+- name: 24h
+  type: time
+  source: { interval: 24h }
+
+- name: scripts
+  type: git
+  source:
+    uri: https://github.com/manno/scripts.git
+    branch: master
+
+jobs:
+- name: trigger
+  plan:
+  - get: 24h
+    trigger: true
+  - get: scripts
+  - task: run-service
+    file: scripts/ci/osc-restic/tasks/run-service.yml
+    params:
+      TOKEN: {{token}}
