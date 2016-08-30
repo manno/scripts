@@ -1,0 +1,29 @@
+resources:
+- name: 24h
+  type: time
+  source: { interval: 24h }
+
+- name: scripts
+  type: git
+  source:
+    uri: https://github.com/manno/scripts.git
+    branch: master
+
+jobs:
+- name: trigger
+  plan:
+  - get: 24h
+    trigger: true
+  - get: scripts
+  - task: services
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source: {repository: appropriate/curl}
+      inputs:
+        - name: scripts
+      run:
+        path: scripts/ci/osc-restic/tasks/trigger.sh
+        params:
+          TOKEN: {{token}}
